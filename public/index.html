@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Buy Things - Customers</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="custom.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
+</head>
+    <body>
+        <div id="page_content"></div>  
+        <div id="page_content2">
+            <a href="items.html">Items</a>
+        </div> 
+        
+        
+        
+        <script>
+        // Get javascript function 'customers'
+        $.getJSON("http://localhost:3000/customers", function(data){
+            var html = "";
+            data.forEach(function(element){
+                html += "<h1>" + element.name + "</h1>";
+                html += "<p>" + element.address + "</p>";
+                html += "<p>" + element.cpr + "</p>";
+            }, this);
+            $("#page_content").html(html); // Add to div
+        });
+        </script>
+    </body>
+</html>

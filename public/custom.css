@@ -1,0 +1,13 @@
+p, h1 {
+    font-family: 'Arimo', sans-serif;
+}
+
+#page_content, #page_content2 {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+#form_insert {
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
