@@ -37,6 +37,10 @@ h1 {
     color: #db3223;
 }
 
+/* Update item by id */
+#form_update > h1 {
+    color: #12b636;
+}
 
 #modal-body {
     overflow:scroll; 

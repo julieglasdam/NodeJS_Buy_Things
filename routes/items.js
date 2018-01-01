@@ -68,7 +68,39 @@ app.post('/insert', function(req, res, next){
         });*/
 
     // Refresh to load updates
-    res.redirect('/items.html');
+    res.redirect('/index.html');
+});
+
+
+// == UPDATE - items ==
+app.post('/update', function(req, res, next){
+    
+    // Create javascript object to insert
+    var item = {
+        name: req.body.item_name,
+        quantity: req.body.quantity,
+        price: req.body.price
+    };
+    console.log(item);
+
+    MongoClient.connect(mongodburl, function(err, db){
+        // Check if input is null
+        assert.equal(null, err);
+       
+        // Update database with the correct id ---- virker ikke med req.body._id
+        var myquery = { _id: ObjectId(req.body._id) };
+  
+        db.collection("items").updateOne(myquery, item, function(err, res) {
+        if (err) throw err;
+          console.log("1 document updated");
+        db.close();
+  });
+
+    });
+
+
+    // Refresh to load updates
+    res.redirect('/index.html');
 });
 
 
@@ -88,11 +120,11 @@ app.post('/delete', function(req, res, next){
     });
 
     // Refresh to load updates
-    res.redirect('/items.html');
+    res.redirect('/index.html');
 });
 
 
 
-// Update cart
+
 
 module.exports = app;
