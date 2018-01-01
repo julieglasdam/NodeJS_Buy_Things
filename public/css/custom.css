@@ -1,0 +1,44 @@
+p, h1 {
+    font-family: 'Arimo', sans-serif;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+/* Add margin to top*/
+.container {
+    margin-top: 8%;
+    margin-left:10%;
+}
+
+
+/* Customer search appears here*/
+#page_content_index_3 {
+    border: 2px solid black;
+    max-width: 400px;
+    min-height: 100px;
+    margin-left: 10px;
+}
+
+/* General styling of all forms */
+.form_style {
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+
+/* Insert item */
+#form_insert > h1, #search_customer > h1 {
+    color: #4262f4;
+}
+
+/* Delete item by id */
+#form_delete > h1 {
+    color: #db3223;
+}
+
+
+#modal-body {
+    overflow:scroll; 
+    height:400px;
+}

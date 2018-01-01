@@ -1,33 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BuyThings - Items</title>
 
-<head>
-    <title>Buy Things - Customers</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="custom.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-    <!-- Font Awesome -->
-    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">
-</head>
-    <body>
-        <div id="page_content"></div>  
-        <div id="page_content2">
-            <a href="items.html">Items</a>
-        </div> 
-        
-        
-        
+    <script src="login.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arimo" rel="stylesheet">   
+  </head>
+
+  <body>
+        <!-- Header -->
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">BuyThings</a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Browse Items</a></li>
+                    <li><a href="customers.html">Customers</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#"> Hello, Customer01</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span></a></li>
+                      </ul>
+                </div>
+        </nav>
+
+
+        <!-- Shopping cart modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+      
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Shopping cart</h4>
+              </div>
+              <div id ="modal-body" class="modal-body">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+       <!-- Page content -->   
+      <div class="container">
+      
+         <!-- List of items to buy -->
+         <div class="row">
+            <div id="page_content" class="col-md-6"></div>
+         </div>
+
+         <!-- Test for get username -->
+         <div class="row">
+            <div id="test" class="col-md-6"></div>
+         </div>
+            
+         <!-- Insert new item -->
+         <div class="row">
+           <div id="page_content2" class="col-md-6">
+              <form action="/insert" method="POST" id="form_insert" class="form_style">
+                 <h1>Add new item</h1>
+                 <p>Name</p>
+                 <input type="text" name="item_name" id="item_name">
+                            
+                 <p>Quantity</p>
+                 <input type="text" name="quantity" id="quantity">
+                               
+                 <p>Price</p>
+                 <input type="text" name="price" id="price">
+                 <br><br>
+                 <input type="submit" value="Submit">
+             </form> 
+           </div>
+        </div>
+            
+        <!-- Delete item -->
+        <div class="row">
+          <div id="page_content3" class="col-md-6">
+            <form action="/delete" method="POST" id="form_delete" class="form_style">
+              <h1>Delete item</h1>
+              <p>ID: </p>
+              <input type="text" name="id" id="id">
+              <br><br>
+              <input type="submit" value="Submit">
+            </form>                              
+          </div>
+        </div>
+
+        <!-- Add item to card === Should be changed to buttons next to items -->
+        <div class="row">
+            <div id="page_content4" class="col-md-6">
+              <form action="/addToCart" method="POST" id="form_add_to_cart" class="form_style">
+                <h1>Add item to cart</h1>
+               
+                <p>item ID: </p>
+                <input type="text" name="item_id" id="item_id">
+                <br><br>
+
+                <p>item Name: </p>
+                <input type="text" name="item_name" id="item_name">
+                <br><br>
+
+                <p>item price: </p>
+                <input type="text" name="price" id="price">
+                <br><br>
+
+                <input type="submit" value="Submit">
+              </form>                              
+            </div>
+       </div>
+     </div> <!-- End of container -->
+
+
+    
         <script>
-        // Get javascript function 'customers'
-        $.getJSON("http://localhost:3000/customers", function(data){
-            var html = "";
-            data.forEach(function(element){
-                html += "<h1>" + element.name + "</h1>";
-                html += "<p>" + element.address + "</p>";
-                html += "<p>" + element.cpr + "</p>";
-            }, this);
-            $("#page_content").html(html); // Add to div
-        });
-        </script>
+            // Get elements from 'items'
+            $.getJSON("http://localhost:3000/items", function(data){ 
+                var html = "";
+                data.forEach(function(element){
+                    html += "<h1>" + element.name + "</h1>";
+                    html += "<p>Id: " + element._id + "</p>";
+                    html += "<p>Quantity: " + element.quantity + "</p>";
+                    html += "<p>Price: $" + element.price + "</p>";
+                }, this);
+                $("#page_content").html(html); // Save to div
+            });
+
+            // Get elements from users order
+            $.getJSON("http://localhost:3000/orders", function(data){ 
+                var html = "";
+                data.forEach(function(element){
+                    html += "<p>Id: " + element._id + "</p>";
+                    html += "<p>Name: " + element.name + "</p>";
+                    html += "<p>Price: " + element.price + "</p>";
+                    html += "<br>";
+                   // html += "<h4>Total: $" + element.total_price + "</h4>";
+                }, this);
+                // Get total price
+                // All customers have one document in orders.
+                // It has a total price 
+                $("#modal-body").html(html); // Save to div
+            });
+
+            // Get username
+         /*   $.getJSON("http://localhost:3000/oneCustomer", function(data){ 
+                var html = "";
+                data.forEach(function(element){
+                    html += "<p>Name: " + element.name + "</p>";
+              
+                 
+                }, this);
+              
+                $("#test").html(html); // Save to div
+            });*/
+
+
+          
+
+
+            </script> 
+
+
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>     
     </body>
 </html>

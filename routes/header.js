@@ -1,11 +1,3 @@
-/*
-Noter:
-- Brug Postman til at indsætte ting i databasen
-- 1-til-1, mange-til-mange
-- MongoDB er ikke normalized
-- Callback function
-*/ 
-
 
 const express = require('express');
 const app = express();
@@ -28,16 +20,4 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.json());            // to support JSON-encoded bodies
 
-var customers = require('./routes/customers.js');
-var items = require('./routes/items.js');
-var orders = require('./routes/orders.js');
-app.use(customers);
-app.use(items);
-app.use(orders);
-
-
-
-
-
-
-app.listen(3000);
+module.exports = app;
