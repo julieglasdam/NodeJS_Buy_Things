@@ -25,7 +25,6 @@ app.get('/items', function(req, res){
     MongoClient.connect(mongodburl, function(err, db){
         var col = db.collection('items');
         
-        // All elements
         col.find().toArray(function(err, result){
             res.json(result);
         });
@@ -94,7 +93,7 @@ app.post('/update', function(req, res, next){
         if (err) throw err;
           console.log("1 document updated");
         db.close();
-  });
+        });
 
     });
 
@@ -122,9 +121,6 @@ app.post('/delete', function(req, res, next){
     // Refresh to load updates
     res.redirect('/index.html');
 });
-
-
-
 
 
 module.exports = app;

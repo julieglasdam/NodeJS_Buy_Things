@@ -34,11 +34,13 @@ app.get('/orders', function(req, res){
         // Get the correct collection
         var col = db.collection('orders');
         
+        // This works when one customer has one docoment with all orders
         // Find the document with the order id matching the customer id
      /*   col.find({order: userId}).toArray(function(err, result){
             res.json(result);
         }); */
 
+        // This works when one order is one document
         col.find().toArray(function(err, result){
             res.json(result);
         });
@@ -50,7 +52,7 @@ app.get('/orders', function(req, res){
 
 
 
-// == Add to order == // Husk at fjerne en vare fra lageret
+// == Add to order == 
 app.post('/addToCart', function(req, res, next){
     // Get the total price from database
     var total_price = 0;
@@ -69,13 +71,7 @@ app.post('/addToCart', function(req, res, next){
     MongoClient.connect(mongodburl, function(err, db){
         // Check if input is null
         assert.equal(null, err);
-        // Get the data
-
-        // Get the correct document and update the array  
-        // find document where order = userId
-        //update array with req.body.item_id
-
-
+        
         db.collection('orders').insertOne(item, function(err, result){
             // Check if it's null
             assert.equal(null, err);

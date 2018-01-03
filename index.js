@@ -1,12 +1,8 @@
 /*
-Noter:
-- Brug Postman til at indsætte ting i databasen
-- 1-til-1, mange-til-mange
-- MongoDB er ikke normalized
-- Callback function
+- Update with id
+- Each customer has one document with array of orders
+- Add item to cart only with ID and it fill out the rest of order
 */ 
-
-
 const express = require('express');
 const app = express();
 var router = express.Router();
@@ -28,16 +24,15 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 app.use(express.json());            // to support JSON-encoded bodies
 
+// Get all the .js files
 var customers = require('./routes/customers.js');
 var items = require('./routes/items.js');
 var orders = require('./routes/orders.js');
+
+// Use the files
 app.use(customers);
 app.use(items);
 app.use(orders);
-
-
-
-
 
 
 app.listen(3000);

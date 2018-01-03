@@ -4,9 +4,6 @@ const app = express();
 var router = express.Router();
 var assert = require('assert');
 
-// ------ TEMP -------
-var userId = "59d7376de0cbf1027de116f4";
-// -------------------
 
 const ObjectId = require('mongodb').ObjectID;
 const MongoClient = require('mongodb').MongoClient;
@@ -27,7 +24,7 @@ app.use(express.json());       // to support JSON-encoded bodies
 
 
 // == Get array of customers ==
-app.get('/customers', function(req, res){ // app.get('customers/:id') // error: cannot find collection
+app.get('/customers', function(req, res){ 
     MongoClient.connect(mongodburl, function(err, db){
         var col = db.collection('customers'); 
 
@@ -40,7 +37,12 @@ app.get('/customers', function(req, res){ // app.get('customers/:id') // error: 
    
 });
 
+
+// GET USERNAME FROM ID
 // ---------- Does not return anything and fucks up html :( 
+// ------ TEMP -------
+//var userId = "59d7376de0cbf1027de116f4";
+// -------------------
 // Find specific customer and return his name
 /*app.get('/oneCustomer', function(req, res){ 
   MongoClient.connect(mongodburl, function(err, db){
@@ -51,9 +53,6 @@ app.get('/customers', function(req, res){ // app.get('customers/:id') // error: 
         res.json(result); // null???
     });
     db.close();
-
-
-
   });
 
 }) */

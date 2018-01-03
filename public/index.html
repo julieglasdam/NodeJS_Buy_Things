@@ -66,9 +66,11 @@
             <div id="test" class="col-md-6"></div>
          </div>
             
-         <!-- Insert new item -->
+         
          <div class="row">
-           <div id="page_content2" class="col-md-6">
+           
+          <!-- Insert new item -->
+          <div id="page_content2" class="col-md-4">
               <form action="/insert" method="POST" id="form_insert" class="form_style">
                  <h1>Add new item</h1>
                  <p>Name</p>
@@ -83,41 +85,50 @@
                  <input type="submit" value="Submit">
              </form> 
            </div>
+
+
+           <div id="page_content5" class="col-md-4">
+            <form action="/update" method="POST" id="form_update" class="form_style">
+               <h1>Update item</h1>
+               <p>ID</p>
+               <input type="text" name="item_id" id="item_id">
+
+               <p>Name</p>
+               <input type="text" name="item_name" id="item_name">
+                          
+               <p>Quantity</p>
+               <input type="text" name="quantity" id="quantity">
+                             
+               <p>Price</p>
+               <input type="text" name="price" id="price">
+               <br><br>
+               <input type="submit" value="Submit">
+           </form> 
+         </div>
+
+
+         <div id="page_content3" class="col-md-4">
+          <form action="/delete" method="POST" id="form_delete" class="form_style">
+            <h1>Delete item</h1>
+            <p>ID: </p>
+            <input type="text" name="id" id="id">
+            <br><br>
+            <input type="submit" value="Submit">
+          </form>                              
+        </div>
+
+
+
         </div>
 
         <!-- Update item -->
         <div class="row">
-            <div id="page_content5" class="col-md-6">
-               <form action="/update" method="POST" id="form_update" class="form_style">
-                  <h1>Update item</h1>
-                  <p>ID</p>
-                  <input type="text" name="item_id" id="item_id">
-
-                  <p>Name</p>
-                  <input type="text" name="item_name" id="item_name">
-                             
-                  <p>Quantity</p>
-                  <input type="text" name="quantity" id="quantity">
-                                
-                  <p>Price</p>
-                  <input type="text" name="price" id="price">
-                  <br><br>
-                  <input type="submit" value="Submit">
-              </form> 
-            </div>
+           
          </div>
             
         <!-- Delete item -->
         <div class="row">
-          <div id="page_content3" class="col-md-6">
-            <form action="/delete" method="POST" id="form_delete" class="form_style">
-              <h1>Delete item</h1>
-              <p>ID: </p>
-              <input type="text" name="id" id="id">
-              <br><br>
-              <input type="submit" value="Submit">
-            </form>                              
-          </div>
+          
         </div>
 
         <!-- Add item to card === Should be changed to buttons next to items -->
